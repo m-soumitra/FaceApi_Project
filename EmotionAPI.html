@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSSample</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+<body>
+ <div id="wrapper" style="width:1020px; display:table;">
+    <div id="jsonOutput" style="width:600px; display:table-cell;border:1px solid black;" >
+      Live video:
+      <br>
+      <br>
+      <iframe width="420" height="315"
+src="https://www.youtube.com/embed/XGSy3_Czz8k?autoplay=1">
+</iframe>
+    </div>
+    <div style="width:200px; display:table-cell">
+      <br>
+      <br>
+      <canvas width="100" height="400"></canvas>
+    </div>
+    <div id="imageDiv" style="width:420px; display:table-cell;border:1px solid black;">
+      Captured Image:
+      <br>
+      <br>
+      <canvas id="myCanvas" width="500" height="400"></canvas>
+    </div>
+  </div>
+
+<script type="text/javascript">
+    $(function() {
+        var params = {
+            // Request parameters
+        };
+
+        $.ajax({
+            // NOTE: You must use the same location in your REST call as you used to obtain your subscription keys.
+            //   For example, if you obtained your subscription keys from westcentralus, replace "westus" in the 
+            //   URL below with "westcentralus".
+            url: "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize?" + $.param(params),
+            beforeSend: function(xhrObj){
+                // Request headers
+                xhrObj.setRequestHeader("Content-Type","application/json");
+
+                // NOTE: Replace the "Ocp-Apim-Subscription-Key" value with a valid subscription key.
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","5864db5420cc494facb676f5561f38af");
+            },
+            type: "POST",
+            // Request body
+            data: '{"url": "http://static.gulfnews.com/polopoly_fs/1.2073235!/image/2964471433.jpg_gen/derivatives/box_460346/2964471433.jpg"}',
+        })
+        .done(function(data) {
+            alert("success");
+        })
+        .fail(function() {
+            alert("error");
+        });
+    });
+</script>
+</body>
+</html>
