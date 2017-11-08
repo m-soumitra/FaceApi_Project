@@ -12,9 +12,10 @@
     <button style="border-radius:4px;padding:6px 12px;" onclick="startWebcam();">Start WebCam</button>
     <button style="color:red;border-radius:4px;padding:6px 12px;" onclick="stopWebcam();">Stop WebCam</button>
     <button style="color:#fff;background-color:#337ab7; border-color:#2e6da4;border-radius:4px;padding:6px 12px;" onclick="snapshot();">Take Snapshot</button>
+    <button style="border-color:#2e6da4;border-radius:4px;padding:6px 12px;" onclick="toggleDisplay();">Toggle WebCam Display</button>
   </p>
   <div id="wrapper" style="width:1020px; display:table;">
-    <div id="jsonOutput" style="width:600px; display:table-cell;border:1px solid black;">
+    <div id="videoDisplay" style="width:600px; display:table-cell;border:1px solid black;">
       Live video:
       <br>
       <br>
@@ -138,6 +139,15 @@
       .fail(function () {
         alert("error");
       });
+  }
+
+  function toggleDisplay() {
+    var x = document.getElementById("videoDisplay");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
   }
 </script>
 
